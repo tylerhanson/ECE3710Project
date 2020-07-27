@@ -1,42 +1,35 @@
 import requests
 import random
+
 from team_rating_factory import get_team_rating
+# from plot import {name_of_plot_function}
 
-
-#    def sort_by_rating(e):
-#    return e['rating']
-
-
-#    def get_ratings_by_year(year):
-#    r = requests.get('https://api.collegefootballdata.com/teams/fbs?year=' + str(year))
-#    teams = r.json()
-#    rankings = []
-#    for team in teams:
-#        rating = get_team_rating(team['school'], year)
-#        rankings.append({"team": team['school'], "rating": rating})
-
-#    rankings.sort(reverse=True, key=sort_by_rating)
-#    for ranking in rankings:
-#        print ranking['team'] + ': ' + str(ranking['rating'])
 
 def gen_linreg_equation():
-    # Get Games
     r = requests.get('https://api.collegefootballdata.com/games?year=2019&seasonType=regular')
     games = r.json()
-    data = []
 
-    # Loop through 50 ?
+    data_x = []
+    data_y = []
     for x in range(0, 50):
-        indx = random.randint(0, 200)
-        home_rating = get_team_rating(games[indx].home_team)
-        away_rating = get_team_rating(games[indx].away_team)
+        indx = random.randint(0, 800)
+
+        home_team = games[indx]['home_team']
+        home_points = games[indx]['home_points']
+        away_team = games[indx]['away_team']
+        away_points = games[indx]['away_points']
+
+        home_rating = get_team_rating(home_team, 2019)
+        away_rating = get_team_rating(away_team, 2019)
 
         if home_rating > away_rating:
-            data.append([home_rating - away_rating, games[indx].home_points - games[indx].away_points])
+            data_x.append(home_rating - away_rating)
+            data_y.append(home_points - away_points)
         else:
-            data.append([away_rating - home_rating, games[indx].away_points - games[indx].home_points])
+            data_x.append(away_rating - home_rating)
+            data_y.append(away_points - home_points)
 
-    # Use Pandas to gen equation
+    # name_of_plot_function(data_x, data_y)
 
 
 def main():
