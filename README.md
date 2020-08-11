@@ -6,3 +6,4 @@ This project uses an algorithm to rate college football teams. The algorithm is 
 ### Setup
 To execute the program, pull the code to a local repo, open a terminal at the root folder, and run
 `python Main.py`
+This will run the program against 50 games from 2019 and generate a plot for you to visualize. You can edit the range in line 14 of Main.py to run against more games however for time purposes I would recommend keeping it at 50.
