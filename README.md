@@ -1,5 +1,8 @@
 # ECE3710Project
 
+Colby Eyre, 10744831
+Tyler Hanson, 10766582
+
 ### Description
 This project uses an algorithm to rate college football teams. The algorithm is run against games in the past to collect the rating differential from the teams and the actual score differential. From this data, a linear regression line is then created to estimate for future games, given a rating differential, the expected score differential. This can be used to either predict outright winners or to find value in betting lines. 
 
